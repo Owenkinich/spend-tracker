@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "spendtracker-be68a",
+    "go": "spendtracker-be68a",
+    "production": "spendtracker-be68a"
+  },
+  "targets": {
+    "spendtracker-be68a": {
+      "hosting": {
+        "main": [
+          "spendtracker-be68a"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

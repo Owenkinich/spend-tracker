@@ -1,0 +1,117 @@
+mutation CreateDemoData @transaction @auth(level: USER, insecureReason: "This operation is for seeding demo data and should only be callable by an authenticated user with appropriate permissions. The auth.uid is not directly used in the operation for data insertion itself, but it ensures a logged-in user performs the action.") {
+  user_insertMany(data: [
+    {
+      id: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      displayName: "Alice Smith",
+      email: "alice@example.com",
+      createdAt: "2023-01-01T10:00:00Z"
+    },
+    {
+      id: "f1e2d3c4-b5a6-0987-6543-210fedcbafed",
+      displayName: "Bob Johnson",
+      email: "bob@example.com",
+      createdAt: "2023-01-01T10:05:00Z"
+    }
+  ])
+  movie_insertMany(data: [
+    {
+      id: "1a2b3c4d-5e6f-7890-1234-567890abcde1",
+      title: "The Great Adventure",
+      year: 2020,
+      createdAt: "2023-01-02T11:00:00Z",
+      summary: "An epic journey through unknown lands.",
+      genres: ["Adventure", "Fantasy"],
+      runtime: 120
+    },
+    {
+      id: "2b3c4d5e-6f7a-8901-2345-67890abcde22",
+      title: "Mystery in the City",
+      year: 2021,
+      createdAt: "2023-01-02T11:05:00Z",
+      summary: "A detective unravels a complex urban mystery.",
+      genres: ["Mystery", "Thriller"],
+      runtime: 105
+    }
+  ])
+  list_insertMany(data: [
+    {
+      id: "3c4d5e6f-7a8b-9012-3456-7890abcde333",
+      userId: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      name: "Alice's Favorites",
+      isPublic: true,
+      createdAt: "2023-01-03T12:00:00Z",
+      updatedAt: "2023-01-03T12:00:00Z",
+      description: "My top picks for movies."
+    },
+    {
+      id: "4d5e6f7a-8b9c-0123-4567-890abcde4444",
+      userId: "f1e2d3c4-b5a6-0987-6543-210fedcbafed",
+      name: "Bob's Watchlist",
+      isPublic: false,
+      createdAt: "2023-01-03T12:05:00Z",
+      updatedAt: "2023-01-03T12:05:00Z",
+      description: "Movies I plan to watch soon."
+    }
+  ])
+  listMovie_insertMany(data: [
+    {
+      listId: "3c4d5e6f-7a8b-9012-3456-7890abcde333",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcde1",
+      position: 1,
+      note: "Highly recommended!"
+    },
+    {
+      listId: "3c4d5e6f-7a8b-9012-3456-7890abcde333",
+      movieId: "2b3c4d5e-6f7a-8901-2345-67890abcde22",
+      position: 2,
+      note: "A real brain-teaser."
+    },
+    {
+      listId: "4d5e6f7a-8b9c-0123-4567-890abcde4444",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcde1",
+      position: 1
+    }
+  ])
+  watch_insertMany(data: [
+    {
+      id: "5e6f7a8b-9c0d-1234-5678-90abcde55555",
+      userId: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcde1",
+      createdAt: "2023-01-04T13:00:00Z",
+      watchDate: "2023-01-04",
+      location: "Home"
+    },
+    {
+      id: "6f7a8b9c-0d1e-2345-6789-0abcde666666",
+      userId: "f1e2d3c4-b5a6-0987-6543-210fedcbafed",
+      movieId: "2b3c4d5e-6f7a-8901-2345-67890abcde22",
+      createdAt: "2023-01-04T13:10:00Z",
+      watchDate: "2023-01-04",
+      location: "Cinema"
+    }
+  ])
+  review_insertMany(data: [
+    {
+      id: "7a8b9c0d-1e2f-3456-7890-abcde7777777",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcde1",
+      userId: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      watchId: "5e6f7a8b-9c0d-1234-5678-90abcde55555",
+      rating: 5,
+      createdAt: "2023-01-05T14:00:00Z",
+      updatedAt: "2023-01-05T14:00:00Z",
+      review: "Absolutely loved it! A true masterpiece.",
+      isPublic: true
+    },
+    {
+      id: "8b9c0d1e-2f3a-4567-8901-bcdef8888888",
+      movieId: "2b3c4d5e-6f7a-8901-2345-67890abcde22",
+      userId: "f1e2d3c4-b5a6-0987-6543-210fedcbafed",
+      watchId: "6f7a8b9c-0d1e-2345-6789-0abcde666666",
+      rating: 4,
+      createdAt: "2023-01-05T14:15:00Z",
+      updatedAt: "2023-01-05T14:15:00Z",
+      review: "Intriguing plot, but a bit slow in the middle.",
+      isPublic: false
+    }
+  ])
+}
